@@ -4,7 +4,6 @@ resource "aws_vpc" "vpc_virginia" {
     Name = "VPC_VIRGINIA v3"
     env  = "Dev"
   }
-  provider = aws.virginia
 }
 
 resource "aws_subnet" "public_subnet" {
