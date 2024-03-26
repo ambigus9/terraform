@@ -1,7 +1,7 @@
 resource "aws_vpc" "vpc_virginia" {
   cidr_block = var.virginia_cidr
   tags = {
-    Name = "VPC_VIRGINIA v3"
+    Name = "VPC_VIRGINIA v5"
     env  = "Dev"
   }
 }
