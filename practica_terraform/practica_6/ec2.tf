@@ -6,7 +6,10 @@ resource "aws_instance" "public_instance" {
   key_name = data.aws_key_pair.key.key_name
   vpc_security_group_ids = [aws_security_group.sg_public_instance.id]
 
-  tags = {
-    "Name": "instancia_terraform"
+  
+  lifecycle {
+    create_before_destroy = true # crea el recurso nuevo primero y luego destruye el actual ante cualquier cambio
+    prevent_destroy = true # evita que se destruya el recurso
   }
+
 }
