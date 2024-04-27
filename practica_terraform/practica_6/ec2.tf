@@ -9,7 +9,7 @@ resource "aws_instance" "public_instance" {
   
   lifecycle {
     create_before_destroy = true # crea el recurso nuevo primero y luego destruye el actual ante cualquier cambio
-    prevent_destroy = true # evita que se destruya el recurso
+    prevent_destroy = false # evita que se destruya el recurso
   }
 
 }
