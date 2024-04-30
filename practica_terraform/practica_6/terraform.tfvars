@@ -12,4 +12,4 @@ tags = {
   "IAC_Version" = "1.8.0"
 }
 
-sg_ingress_cidr = "0.0.0.0/0"
+sg_ingress_cidr = "186.103.3.192/32"
