@@ -12,4 +12,9 @@ tags = {
   "IAC_Version" = "1.8.0"
 }
 
-sg_ingress_cidr = "186.103.3.192/32"
+sg_ingress_cidr = "186.103.25.127/32"
+
+ec2_specs = {
+  "ami" = "ami-0c101f26f147fa7fd"
+  "instance_type" = "t2.micro"
+}

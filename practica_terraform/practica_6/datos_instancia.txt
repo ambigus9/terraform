@@ -2,3 +2,8 @@ instancia creada con IP: 50.17.112.39
 instancia creada con IP: 3.238.116.53
 instancia creada con IP: 44.203.73.243
 instancia destruida con IP: 44.203.73.243
+instancia creada con IP: 3.84.243.85
+instancia destruida con IP: 3.84.243.85
+instancia creada con IP: 34.229.69.78
+instancia destruida con IP: 100.26.162.170
+instancia creada con IP: 34.201.118.146

@@ -27,3 +27,8 @@ variable "sg_ingress_cidr" {
     description = "CIDR for ingress traffic"
     type = string  
 }
+
+variable "ec2_specs" {
+    description = "Specs for EC2"
+    type = map(string)
+}
