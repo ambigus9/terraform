@@ -1,7 +1,7 @@
 resource "aws_vpc" "vpc_virginia" {
   cidr_block = var.virginia_cidr
   tags = {
-    Name = "VPC VIRGINIA v12"
+    Name = "VPC VIRGINIA v13"
   }
 }
 
@@ -20,7 +20,7 @@ resource "aws_subnet" "private_subnet" {
   tags = {
     Name = "Subnet Privada"
   }
-  depends_on = [ aws_instance.public_instance ]
+  #depends_on = [ aws_instance.public_instance ]}
 }
 
 resource "aws_internet_gateway" "igw" {

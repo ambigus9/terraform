@@ -6,13 +6,13 @@ subnets = ["10.10.0.0/24", "10.10.1.0/24"]
 
 tags = {
   "env"         = "develop"
-  "owner"      = "Miguel"
+  "owner"       = "Miguel"
   "cloud"       = "AWS"
   "IAC"         = "Terraform"
-  "IAC_Version" = "1.8.0"
+  "IAC_Version" = "1.8.3"
 }
 
-sg_ingress_cidr = "186.103.25.127/32"
+sg_ingress_cidr = "186.103.60.89/32"
 
 ec2_specs = {
   "ami" = "ami-0c101f26f147fa7fd"

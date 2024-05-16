@@ -21,6 +21,10 @@ resource "aws_instance" "public_instance" {
     command = "echo instancia destruida con IP: ${self.public_ip} >> datos_instancia.txt"
   }
 
+  tags = {
+    Name = "Terraform v13"
+  }
+
   # provisioner "remote-exec" {
 
   #   inline = [ 
