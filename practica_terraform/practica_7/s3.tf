@@ -1,4 +1,4 @@
 
 resource "aws_s3_bucket" "cerberus" {
-  bucket = "cerberus"
+  bucket = local.s3-sufix
 }
