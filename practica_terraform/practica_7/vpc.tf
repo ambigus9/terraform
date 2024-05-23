@@ -67,10 +67,23 @@ resource "aws_security_group" "sg_public_instance" {
 resource "aws_vpc_security_group_ingress_rule" "allow_tls_ipv4" {
   description = "SSH over Internet"
   security_group_id = aws_security_group.sg_public_instance.id
-  cidr_ipv4         = var.sg_ingress_cidr
   from_port         = 22
-  ip_protocol       = "tcp"
   to_port           = 22
+  ip_protocol       = "tcp"
+  cidr_ipv4         = var.sg_ingress_cidr
+
+  tags = {
+    Name = "Public Instance SG-${local.sufix}"
+  }
+}
+
+resource "aws_vpc_security_group_ingress_rule" "allow_tls_ipv4" {
+  description = "HTTP over Internet"
+  security_group_id = aws_security_group.sg_public_instance.id
+  from_port         = 80
+  to_port           = 80
+  ip_protocol       = "tcp"
+  cidr_ipv4         = var.sg_ingress_cidr
 
   tags = {
     Name = "Public Instance SG-${local.sufix}"
