@@ -1,7 +1,7 @@
 resource "aws_vpc" "vpc_virginia" {
   cidr_block = var.virginia_cidr
   tags = {
-    Name = "VPC VIRGINIA v13"
+    Name = "vpc_virginia-${local.sufix}"
   }
 }
 
@@ -10,7 +10,7 @@ resource "aws_subnet" "public_subnet" {
   cidr_block              = var.subnets[0]
   map_public_ip_on_launch = true
   tags = {
-    Name = "Subnet Pública"
+    Name = "public_subnet-${local.sufix}"
   }
 }
 
@@ -18,7 +18,7 @@ resource "aws_subnet" "private_subnet" {
   vpc_id     = aws_vpc.vpc_virginia.id
   cidr_block = var.subnets[1]
   tags = {
-    Name = "Subnet Privada"
+    Name = "private_subnet-${local.sufix}"
   }
   #depends_on = [ aws_instance.public_instance ]}
 }
@@ -27,7 +27,7 @@ resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.vpc_virginia.id
 
   tags = {
-    Name = "igw vpc virginia"
+    Name = "igw vpc virginia-${local.sufix}"
   }
 }
 
@@ -41,7 +41,7 @@ resource "aws_route_table" "crt" {
   }
 
   tags = {
-    Name = "public custom route table (crt)"
+    Name = "public crt-${local.sufix}" # CRT (Custom Route Table)
   }
 }
 
@@ -73,7 +73,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow_tls_ipv4" {
   to_port           = 22
 
   tags = {
-    Name = "Public Instance SG"
+    Name = "Public Instance SG-${local.sufix}"
   }
 }
 
