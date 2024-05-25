@@ -58,41 +58,25 @@ resource "aws_security_group" "sg_public_instance" {
   description = "Allow SSH inbound traffic and ALL egress traffic"
   vpc_id      = aws_vpc.vpc_virginia.id
 
-  tags = {
-    Name = "Allow SSH Conection"
+  dynamic "ingress" {
+    for_each = var.ingress_ports_list
+    content {
+      from_port = ingress.value
+      to_port = ingress.value
+      protocol = "tcp"
+      cidr_blocks = [var.sg_ingress_cidr]
+    }
   }
-}
 
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
 
-resource "aws_vpc_security_group_ingress_rule" "allows_ssh" {
-  description       = "SSH over Internet"
-  security_group_id = aws_security_group.sg_public_instance.id
-  from_port         = 22
-  to_port           = 22
-  ip_protocol       = "tcp"
-  cidr_ipv4         = var.sg_ingress_cidr
-}
-
-resource "aws_vpc_security_group_ingress_rule" "allows_http" {
-  description       = "HTTP over Internet"
-  security_group_id = aws_security_group.sg_public_instance.id
-  from_port         = 80
-  to_port           = 80
-  ip_protocol       = "tcp"
-  cidr_ipv4         = var.sg_ingress_cidr
-}
-
-resource "aws_vpc_security_group_ingress_rule" "allows_https" {
-  description       = "HTTPS over Internet"
-  security_group_id = aws_security_group.sg_public_instance.id
-  from_port         = 443
-  to_port           = 443
-  ip_protocol       = "tcp"
-  cidr_ipv4         = var.sg_ingress_cidr
-}
-
-resource "aws_vpc_security_group_egress_rule" "allow_all_traffic_ipv4" {
-  security_group_id = aws_security_group.sg_public_instance.id
-  cidr_ipv4         = "0.0.0.0/0"
-  ip_protocol       = "-1" # semantically equivalent to all ports
+  tags = {
+    Name = "Public Instance SG-${local.sufix}"
+  }
 }
