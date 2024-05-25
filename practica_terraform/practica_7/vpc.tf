@@ -55,39 +55,40 @@ resource "aws_route_table_association" "crta_public_subnet" {
 # Adding - Segurity Group for enable connecting to EC2 Public Instance
 resource "aws_security_group" "sg_public_instance" {
   name        = "Public Instance SG"
-  description = "Allo SSH inbound traffic and ALL egress traffic"
+  description = "Allow SSH inbound traffic and ALL egress traffic"
   vpc_id      = aws_vpc.vpc_virginia.id
 
   tags = {
-    Name = "allow_tls"
+    Name = "Allow SSH Conection"
   }
 }
 
 
-resource "aws_vpc_security_group_ingress_rule" "allow_tls_ipv4" {
-  description = "SSH over Internet"
+resource "aws_vpc_security_group_ingress_rule" "allows_ssh" {
+  description       = "SSH over Internet"
   security_group_id = aws_security_group.sg_public_instance.id
   from_port         = 22
   to_port           = 22
   ip_protocol       = "tcp"
   cidr_ipv4         = var.sg_ingress_cidr
-
-  tags = {
-    Name = "Public Instance SG-${local.sufix}"
-  }
 }
 
-resource "aws_vpc_security_group_ingress_rule" "allow_tls_ipv4" {
-  description = "HTTP over Internet"
+resource "aws_vpc_security_group_ingress_rule" "allows_http" {
+  description       = "HTTP over Internet"
   security_group_id = aws_security_group.sg_public_instance.id
   from_port         = 80
   to_port           = 80
   ip_protocol       = "tcp"
   cidr_ipv4         = var.sg_ingress_cidr
+}
 
-  tags = {
-    Name = "Public Instance SG-${local.sufix}"
-  }
+resource "aws_vpc_security_group_ingress_rule" "allows_https" {
+  description       = "HTTPS over Internet"
+  security_group_id = aws_security_group.sg_public_instance.id
+  from_port         = 443
+  to_port           = 443
+  ip_protocol       = "tcp"
+  cidr_ipv4         = var.sg_ingress_cidr
 }
 
 resource "aws_vpc_security_group_egress_rule" "allow_all_traffic_ipv4" {

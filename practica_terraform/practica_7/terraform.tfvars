@@ -14,7 +14,7 @@ tags = {
   "region" = "virginia"
 }
 
-sg_ingress_cidr = "186.103.60.89/32"
+sg_ingress_cidr = "181.55.23.106/32"
 
 ec2_specs = {
   "ami" = "ami-0c101f26f147fa7fd"
