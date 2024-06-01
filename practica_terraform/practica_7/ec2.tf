@@ -2,7 +2,7 @@
 variable "instancias" {
   description = "Nombre de las Instancias EC2"
   type        = set(string)
-  default     = ["apache"]
+  default     = ["apache","mysql","jumpserver"]
 }
 
 
